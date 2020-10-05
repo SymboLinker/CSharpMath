@@ -87,6 +87,7 @@ namespace CSharpMath.Editor {
     public TFont Font { get; set; }
     public LineStyle LineStyle { get; set; }
     public Color SelectColor { get; set; }
+    public string MultiplicationSymbol { get; set; } = @"\times";
     public virtual RectangleF Measure => Display?.DisplayBounds() ?? RectangleF.Empty;
     public bool HasText => MathList?.Atoms?.Count > 0;
     public void RecreateDisplayFromMathList() {
@@ -667,7 +668,7 @@ namespace CSharpMath.Editor {
           InsertSymbolName(@"\geq");
           break;
         case MathKeyboardInput.Multiply:
-          InsertSymbolName(@"\times");
+          InsertSymbolName(MultiplicationSymbol);
           break;
         case MathKeyboardInput.Divide:
           InsertSymbolName(@"\div");
