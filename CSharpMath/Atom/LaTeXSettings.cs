@@ -321,7 +321,7 @@ namespace CSharpMath.Atom {
     public static MathAtom Times => new BinaryOperator("×");
     public static MathAtom Divide => new BinaryOperator("÷");
     public static MultiplicationSignOption MultiplicationSign { get; set; } = MultiplicationSignOption.X;
-    public static string MulticplicationSignLaTeX => MultiplicationSign == MultiplicationSignOption.Dot ? LaTeXConstants.cdot : LaTeXConstants.times;
+    public static string MultiplicationSignLaTeX => MultiplicationSign == MultiplicationSignOption.Dot ? LaTeXConstants.cdot : LaTeXConstants.times;
     public static DecimalSignOption DecimalSign { get; set; } = DecimalSignOption.Point;
     public static string DecimalSignLaTeX => DecimalSign == DecimalSignOption.Comma ? LaTeXConstants.DecimalComma : LaTeXConstants.DecimalPoint;
     public static Color? PlaceholderRestingColor { get; set; }

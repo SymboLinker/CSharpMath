@@ -667,7 +667,7 @@ namespace CSharpMath.Editor {
           InsertSymbolName(@"\geq");
           break;
         case MathKeyboardInput.Multiply:
-          InsertSymbolName(LaTeXSettings.MulticplicationSignLaTeX);
+          InsertSymbolName(LaTeXSettings.MultiplicationSignLaTeX);
           break;
         case MathKeyboardInput.Divide:
           InsertSymbolName(@"\div");
