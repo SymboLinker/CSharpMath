@@ -30,7 +30,7 @@ namespace CSharpMath.Forms {
     protected override void ButtonDraw() {
       Content ??= new TextView();
       switch (Input) {
-        case MathKeyboardInput.Multiply: Content.LaTeX = @$"\(\times\)"; break;
+        case MathKeyboardInput.Multiply: Content.LaTeX = @$"\({LaTeXConstants.times})"; break;
         case MathKeyboardInput.Left: Content.LaTeX = "\u25C0"; break;
         case MathKeyboardInput.Right: Content.LaTeX = "\u25B6"; break;
         case MathKeyboardInput.Up: Content.LaTeX = "\u25B2"; break;

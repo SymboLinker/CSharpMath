@@ -87,7 +87,6 @@ namespace CSharpMath.Editor {
     public TFont Font { get; set; }
     public LineStyle LineStyle { get; set; }
     public Color SelectColor { get; set; }
-    public string MultiplicationSymbol { get; set; } = @"\times";
     public virtual RectangleF Measure => Display?.DisplayBounds() ?? RectangleF.Empty;
     public bool HasText => MathList?.Atoms?.Count > 0;
     public void RecreateDisplayFromMathList() {
@@ -668,7 +667,7 @@ namespace CSharpMath.Editor {
           InsertSymbolName(@"\geq");
           break;
         case MathKeyboardInput.Multiply:
-          InsertSymbolName(MultiplicationSymbol);
+          InsertSymbolName(LaTeXSettings.MulticplicationSignLaTeX);
           break;
         case MathKeyboardInput.Divide:
           InsertSymbolName(@"\div");
@@ -697,6 +696,9 @@ namespace CSharpMath.Editor {
         case MathKeyboardInput.Prime:
           InsertAtom(new Atoms.Prime(1));
           break;
+        case MathKeyboardInput.Decimal:
+          InsertSymbolName(LaTeXSettings.DecimalSignLaTeX);
+          break;
         case MathKeyboardInput.LeftRoundBracket:
         case MathKeyboardInput.RightRoundBracket:
         case MathKeyboardInput.LeftSquareBracket:
@@ -711,7 +713,6 @@ namespace CSharpMath.Editor {
         case MathKeyboardInput.D7:
         case MathKeyboardInput.D8:
         case MathKeyboardInput.D9:
-        case MathKeyboardInput.Decimal:
         case MathKeyboardInput.Plus:
         case MathKeyboardInput.Minus:
         case MathKeyboardInput.Ratio:

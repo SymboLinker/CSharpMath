@@ -320,6 +320,10 @@ namespace CSharpMath.Atom {
       };
     public static MathAtom Times => new BinaryOperator("×");
     public static MathAtom Divide => new BinaryOperator("÷");
+    public static MultiplicationSignOption MultiplicationSign { get; set; } = MultiplicationSignOption.X;
+    public static string MulticplicationSignLaTeX => MultiplicationSign == MultiplicationSignOption.Dot ? LaTeXConstants.cdot : LaTeXConstants.times;
+    public static DecimalSignOption DecimalSign { get; set; } = DecimalSignOption.Point;
+    public static string DecimalSignLaTeX => DecimalSign == DecimalSignOption.Comma ? LaTeXConstants.DecimalComma : LaTeXConstants.DecimalPoint;
     public static Color? PlaceholderRestingColor { get; set; }
     public static Color? PlaceholderActiveColor { get; set; }
     public static string PlaceholderActiveNucleus { get; set; } = "\u25A0";
@@ -411,7 +415,7 @@ namespace CSharpMath.Atom {
         { "white", Color.FromArgb(255, 255, 255) },
         { "yellow", Color.FromArgb(255, 255, 0) }
       };
-
+    
     public static MathAtom? AtomForCommand(string symbolName) =>
       CommandSymbols.FirstToSecond.TryGetValue(
         symbolName ?? throw new ArgumentNullException(nameof(symbolName)),
@@ -651,14 +655,14 @@ namespace CSharpMath.Atom {
         // Table 7: Binary Operation Symbols
         { @"\pm", new BinaryOperator("±") },
         { @"\mp", new BinaryOperator("∓") },
-        { @"\times", Times },
+        { LaTeXConstants.times, Times },
         { @"\div", Divide },
         { @"\ast", new BinaryOperator("∗") },
         { @"*", new BinaryOperator("*") }, // ADDED: For consistency with \ast
         { @"\star", new BinaryOperator("⋆") },
         { @"\circ", new BinaryOperator("◦") },
         { @"\bullet", new BinaryOperator("•") },
-        { @"\cdot", new BinaryOperator("·") },
+        { LaTeXConstants.cdot, new BinaryOperator("·") },
         { @"+", new BinaryOperator("+") },
         { @"\cap", new BinaryOperator("∩") },
         { @"\cup", new BinaryOperator("∪") },
@@ -797,7 +801,8 @@ namespace CSharpMath.Atom {
         { @"\bot", new Ordinary("⊥") },
         { @"\|", @"\Vert", new Ordinary("‖") },
         { @"\angle", new Ordinary("∠") },
-        { @".", new Number(".") }, // CHANGED: Not punctuation for easy parsing of numbers
+        { LaTeXConstants.DecimalPoint, new Number(".") }, // CHANGED: Not punctuation for easy parsing of numbers
+        { LaTeXConstants.DecimalComma, new Number(",") }, // Decimal sign in some cultures.
         { @"\vdots", new Punctuation("⋮") }, // CHANGED: Not Ordinary according to https://latex.wikia.org/wiki/List_of_LaTeX_symbols#Class_6_.28Pun.29_symbols:_postfix_.2F_punctuation
         { @"\forall", new Ordinary("∀") },
         { @"\exists", new Ordinary("∃") },
@@ -1142,4 +1147,6 @@ namespace CSharpMath.Atom {
         // \varsupsetneqq -> ⫌ + U+FE00 (Variation Selector 1) Not dealing with variation selectors, thank you very much
       };
   }
+  public enum MultiplicationSignOption { X, Dot }
+  public enum DecimalSignOption { Point, Comma }
 }
