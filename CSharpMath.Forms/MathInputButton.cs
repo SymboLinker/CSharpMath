@@ -23,6 +23,7 @@ namespace CSharpMath.Forms {
     public override void ButtonDraw() {
       Content ??= new TextView();
       switch (Input) {
+        case MathKeyboardInput.Multiply: Content.LaTeX = LatexHelper.InlineMath(LaTeXConstants.times); break;
         case MathKeyboardInput.Left: Content.LaTeX = "\u25C0"; break;
         case MathKeyboardInput.Right: Content.LaTeX = "\u25B6"; break;
         case MathKeyboardInput.Up: Content.LaTeX = "\u25B2"; break;
@@ -53,7 +54,7 @@ namespace CSharpMath.Forms {
               latex = latex.Replace(LaTeXSettings.PlaceholderActiveNucleus, coloredPlaceholderActiveNucleus);
             }
           }
-          Content.LaTeX = @$"\({latex}\)";
+          Content.LaTeX = LatexHelper.InlineMath(latex);
           break;
       }
       base.ButtonDraw();

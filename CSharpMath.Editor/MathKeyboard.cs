@@ -656,7 +656,7 @@ namespace CSharpMath.Editor {
           InsertSymbolName(@"\geq");
           break;
         case MathKeyboardInput.Multiply:
-          InsertSymbolName(@"\times");
+          InsertSymbolName(LaTeXSettings.MultiplicationSignLaTeX);
           break;
         case MathKeyboardInput.Divide:
           InsertSymbolName(@"\div");
@@ -685,6 +685,9 @@ namespace CSharpMath.Editor {
         case MathKeyboardInput.Prime:
           InsertAtom(new Atoms.Prime(1));
           break;
+        case MathKeyboardInput.Decimal:
+          InsertSymbolName(LaTeXSettings.DecimalSignLaTeX);
+          break;
         case MathKeyboardInput.LeftRoundBracket:
         case MathKeyboardInput.RightRoundBracket:
         case MathKeyboardInput.LeftSquareBracket:
@@ -699,7 +702,6 @@ namespace CSharpMath.Editor {
         case MathKeyboardInput.D7:
         case MathKeyboardInput.D8:
         case MathKeyboardInput.D9:
-        case MathKeyboardInput.Decimal:
         case MathKeyboardInput.Plus:
         case MathKeyboardInput.Minus:
         case MathKeyboardInput.Ratio:
